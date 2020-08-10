@@ -27,7 +27,7 @@
   * 1.0
     * Initial relase.
     
-## Acknowledgments
+## Acknowledgments:
   The tools was used:<br/>
       * [Tyrrrzz's YoutubeExplode](https://github.com/Tyrrrz/YoutubeExplode) to get Youtube Video's metadatas and datas.<br/>
       * [AydinAdn's Mediatoolkit](https://github.com/AydinAdn/MediaToolkit) to convert the downloaded file to 'mp3'.<br/>
