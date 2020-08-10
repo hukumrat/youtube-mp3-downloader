@@ -1,6 +1,6 @@
 # youtube-mp3-downloader
 
- It's a simple youtube mp3 converter. <br/>
+ It's a simple youtube mp3 downloader. <br/>
 
 ## Description
  
