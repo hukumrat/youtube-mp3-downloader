@@ -1,6 +1,8 @@
-﻿using MediaToolkit;
-using MediaToolkit.Model;
-using MediaToolkit.Options;
+﻿//using MediaToolkit;
+//using MediaToolkit.Model;
+
+using FFmpeg.NET;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,42 +27,30 @@ namespace Youtube_Downloader_Trying_1
             formAlert frmalrt = new formAlert();
             frmalrt.showAlert(msg, type);
         }
-
-        public void test()
+        public async void convert()
         {
-            var inputFile = new MediaFile { Filename = @"C:\Users\hukumrat\Desktop\Yeni klasör\Evil Techno - Shotgun.mp3" };
-            var outputFile = new MediaFile { Filename = @"C:\Users\hukumrat\Desktop\Yeni klasör\output-file.mp3" };
-            string ffmpeg = @"C:\Users\hukumrat\Desktop\f\f\bin\ffmpeg.exe";
-            string command = $"-i {inputFile} -ab 320k {outputFile}";
+            var inputFile = new MediaFile(lblaudioPath.Text);
+            var outputFile = new MediaFile(lblOutputFilename.Text);
+            var ffmpeg = new Engine(Application.StartupPath + "\\ffmpeg.exe");
+            var options = new FFmpeg.NET.ConversionOptions();
+            options.AudioBitRate = Properties.Settings.Default.kbps;
+            ffmpeg.Error += OnError;
+            ffmpeg.Complete += OnComplete;
+            await ffmpeg.ConvertAsync(inputFile, outputFile, options);
 
-            using (var engine = new Engine(ffmpeg))
-            {
-                engine.GetMetadata(inputFile);
-                engine.CustomCommand(string.Format(command));
-            }
-        }
-        public void convert()
-        {
-            var inputFile = new MediaFile { Filename = lblaudioPath.Text };
-            var outputFile = new MediaFile { Filename = lblOutputFilename.Text };
-
-            //var inputFile = new MediaFile { Filename = @"C:\Users\hukumrat\Desktop\Yeni klasör\Evil Techno - Shotgun.mp3" };
-            //var outputFile = new MediaFile { Filename = @"C:\Users\hukumrat\Desktop\Yeni klasör\out.mp3" };
-            using (var engine = new Engine())
-            {
-                engine.GetMetadata(inputFile);
-                var options = new ConversionOptions();
-                options.AudioSampleRate = AudioSampleRate.Default;
-                engine.Convert(inputFile, outputFile, options);
-
-                // engine.CustomCommand("ffmpeg - i C:\Users\hukumrat\Desktop\Yeni klasör\Evil Techno - Shotgun.mp3 -ab 320k outputfile.mp3");
-                //engine.ConvertProgressEvent(); PROCESSING... ****************************************************************
-            }
         }
 
+        private void OnComplete(object sender, FFmpeg.NET.Events.ConversionCompleteEventArgs e)
+        {
+            File.Delete(lblaudioPath.Text);
+        }
+
+        private void OnError(object sender, FFmpeg.NET.Events.ConversionErrorEventArgs e)
+        {
+            MessageBox.Show(e.Exception.ToString());
+        }
         public async void proccess()
         {
-
             try
             {
                 #region DEFINING    
@@ -230,7 +220,7 @@ namespace Youtube_Downloader_Trying_1
                 metroGrid.Rows[q].Cells[2].Value = "completed!";
                 metroGrid.Rows[q].DefaultCellStyle.ForeColor = Color.SeaGreen;
                 metroGrid.Rows[q].DefaultCellStyle.SelectionForeColor = Color.SeaGreen;
-                File.Delete(lblaudioPath.Text);
+                //File.Delete(lblaudioPath.Text);
                 alert("Success! " + metroGrid.Rows[q].Cells[0].Value + " downloaded!", formAlert.enmType.success);
                 q++;
                 z++;
@@ -257,15 +247,15 @@ namespace Youtube_Downloader_Trying_1
             {
                 if (metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
-                    string openPath = metroGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    System.Diagnostics.Process.Start("explorer.exe", openPath);
+                    string openPath = metroGrid.Rows[e.RowIndex].Cells[4].Value.ToString() + "\\" + metroGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + ".mp3";
+                    System.Diagnostics.Process.Start("explorer.exe", @"/select," + openPath);
                 }
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show("The system can't find the file. File may has been moved/deleted.");
             }
-            #endregion//indirilen dosya da seçilsin
+            #endregion
         }
 
         private void formDownload_Load(object sender, EventArgs e)
@@ -275,6 +265,7 @@ namespace Youtube_Downloader_Trying_1
 
         private void bnfbtnAddDownload2_Click(object sender, EventArgs e)
         {
+
             // test();
             // MessageBox.Show("hele bekle");
             /* alert("Success", formAlert.enmType.success);

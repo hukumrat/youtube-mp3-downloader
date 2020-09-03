@@ -41,5 +41,8 @@
     <Setting Name="color12" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Gray</Value>
     </Setting>
+    <Setting Name="kbps" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">192</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

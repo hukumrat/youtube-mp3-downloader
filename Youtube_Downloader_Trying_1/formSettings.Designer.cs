@@ -33,6 +33,8 @@
             this.txtPath = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.toggle = new DevExpress.XtraEditors.ToggleSwitch();
             this.btnBrowse = new Bunifu.Framework.UI.BunifuImageButton();
+            this.kbpsComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.lblKbps = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.toggle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBrowse)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +80,7 @@
             // toggle
             // 
             this.toggle.EditValue = true;
-            this.toggle.Location = new System.Drawing.Point(118, 268);
+            this.toggle.Location = new System.Drawing.Point(118, 360);
             this.toggle.Name = "toggle";
             this.toggle.Properties.Appearance.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.toggle.Properties.Appearance.ForeColor = System.Drawing.Color.White;
@@ -103,12 +105,42 @@
             this.btnBrowse.Zoom = 10;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
+            // kbpsComboBox
+            // 
+            this.kbpsComboBox.FontSize = MetroFramework.MetroComboBoxSize.Small;
+            this.kbpsComboBox.FormattingEnabled = true;
+            this.kbpsComboBox.ItemHeight = 19;
+            this.kbpsComboBox.Items.AddRange(new object[] {
+            "124",
+            "192",
+            "320"});
+            this.kbpsComboBox.Location = new System.Drawing.Point(248, 269);
+            this.kbpsComboBox.Name = "kbpsComboBox";
+            this.kbpsComboBox.Size = new System.Drawing.Size(121, 25);
+            this.kbpsComboBox.Style = MetroFramework.MetroColorStyle.Blue;
+            this.kbpsComboBox.TabIndex = 5;
+            this.kbpsComboBox.UseSelectable = true;
+            this.kbpsComboBox.SelectedIndexChanged += new System.EventHandler(this.kbpsComboBox_SelectedIndexChanged);
+            // 
+            // lblKbps
+            // 
+            this.lblKbps.AutoSize = true;
+            this.lblKbps.ForeColor = System.Drawing.Color.White;
+            this.lblKbps.Location = new System.Drawing.Point(115, 272);
+            this.lblKbps.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblKbps.Name = "lblKbps";
+            this.lblKbps.Size = new System.Drawing.Size(95, 18);
+            this.lblKbps.TabIndex = 6;
+            this.lblKbps.Text = "Audio Bitrate:";
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
             this.ClientSize = new System.Drawing.Size(895, 682);
+            this.Controls.Add(this.lblKbps);
+            this.Controls.Add(this.kbpsComboBox);
             this.Controls.Add(this.toggle);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.txtPath);
@@ -132,5 +164,7 @@
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtPath;
         private Bunifu.Framework.UI.BunifuImageButton btnBrowse;
         public DevExpress.XtraEditors.ToggleSwitch toggle;
+        private MetroFramework.Controls.MetroComboBox kbpsComboBox;
+        private System.Windows.Forms.Label lblKbps;
     }
 }

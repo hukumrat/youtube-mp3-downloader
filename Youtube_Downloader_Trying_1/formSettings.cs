@@ -22,6 +22,7 @@ namespace Youtube_Downloader_Trying_1
             #region dark theme settings
             this.BackColor = Color.FromArgb(42, 42, 42);
             this.lblDir.ForeColor = Color.White;
+            this.lblKbps.ForeColor = Color.White;
             this.toggle.ForeColor = Color.White;
             this.btnBrowse.BackColor = Color.FromArgb(42, 42, 42);
             this.btnBrowse.Image = Properties.Resources.browse_light;
@@ -37,6 +38,7 @@ namespace Youtube_Downloader_Trying_1
             #region light theme settings
             this.BackColor = Color.FromArgb(240, 240, 240);
             this.lblDir.ForeColor = Color.Black;
+            this.lblKbps.ForeColor = Color.Black;
             this.toggle.ForeColor = Color.Black;
             this.btnBrowse.BackColor = Color.FromArgb(240, 240, 240);
             this.btnBrowse.Image = Properties.Resources.browse_dark;
@@ -96,6 +98,12 @@ namespace Youtube_Downloader_Trying_1
         private void formSettings_Load(object sender, EventArgs e)
         {
             txtPath.Text = Properties.Settings.Default.pathFolder;
+            if (Properties.Settings.Default.kbps == 124)
+                kbpsComboBox.SelectedIndex = 0;
+            else if (Properties.Settings.Default.kbps == 192)
+                kbpsComboBox.SelectedIndex = 1;
+            else if (Properties.Settings.Default.kbps == 320)
+                kbpsComboBox.SelectedIndex = 2;
         }
 
         private void toggle_Toggled(object sender, EventArgs e)
@@ -131,6 +139,12 @@ namespace Youtube_Downloader_Trying_1
                 Properties.Settings.Default.Save();
             }
             #endregion
+        }
+        
+        private void kbpsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.kbps = Convert.ToInt32(kbpsComboBox.Text);
+            Properties.Settings.Default.Save();
         }
     }
 }

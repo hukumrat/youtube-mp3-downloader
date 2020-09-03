@@ -178,5 +178,17 @@ namespace Youtube_Downloader_Trying_1.Properties {
                 this["color12"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192")]
+        public int kbps {
+            get {
+                return ((int)(this["kbps"]));
+            }
+            set {
+                this["kbps"] = value;
+            }
+        }
     }
 }

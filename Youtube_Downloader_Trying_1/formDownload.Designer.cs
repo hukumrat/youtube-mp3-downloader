@@ -102,7 +102,7 @@
             // 
             this.lblaudioPath.AutoSize = true;
             this.lblaudioPath.ForeColor = System.Drawing.Color.White;
-            this.lblaudioPath.Location = new System.Drawing.Point(754, 21);
+            this.lblaudioPath.Location = new System.Drawing.Point(754, 31);
             this.lblaudioPath.Name = "lblaudioPath";
             this.lblaudioPath.Size = new System.Drawing.Size(39, 18);
             this.lblaudioPath.TabIndex = 1;
