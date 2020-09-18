@@ -1,5 +1,5 @@
 # youtube-mp3-downloader<br>
-It's a simple youtube mp3 downloader.<br>
+It's a simple youtube mp3 downloader<br>
 
 ### Description<br>
 This tool retrieves video's infos. Extracts the '.webm' URL of video using Tyrrrzz's YoutubeExplode. Downloads the data using WebClient. Converts the '.webm' file to '.mp3' file using AydinAdn's Mediatoolkit.<br>
